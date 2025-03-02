@@ -25,9 +25,11 @@ int main() {
     // add $t1, $s6, $0
     int* t1 = A + 0;
     // sw $t1, 0($t0)
-    *t0 = *t1; // sw is backwards with immediate first and register second
+    *(t0 + 0) = *t1; // sw is backwards with immediate first and register second
     // lw $t0, 0($t0)
-    t0 = t0 + 0;
+    t0 = *(t0 + 0); // dangerous cast, but this is the translation of the operation. in ideal
+    // case, just store in another variable
      // add $s0, $t1, $t0
-    f = *t0 + *t1;
+    f = (t0) + t1; // not meaningful since we are adding int and ptr, but this is the translation
+    return 0;
 }

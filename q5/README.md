@@ -20,9 +20,9 @@ in I-type operations has a bit-width of 16 bits. However, addition is signed, so
 So our current range is (-0x00020000, 0x0001FFFC)
 
 if our current program counter is set at 0x20000000, and we use the MIPS green card which 
-increments PC by 4 (1 word), PC+4 = 0x20000004. adding to ranges
+increments PC by 4 (1 word), PC+4 = 0x20000004. adding to rt
 
-So, our max value combined with the upper nibble is 0x20020000. 
-Our minimum value combined with the lower nibble is 0x1FFE0004.
+So, our max value combined with the upper nibble is 0x2001FFFC. 
+Our minimum value combined with the upper nibble is 0x1FFE0000
 
-Final Answer: 0x1FFE0004 to 0x20020000
+Final Answer: 0x2001FFFC to 0x1FFE0000

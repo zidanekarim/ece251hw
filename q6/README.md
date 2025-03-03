@@ -1,7 +1,7 @@
 # ALU Module 
-## Basic parameterized with parameters we, clk, addr, write, read
-The display output shows the intermediary writes/reads, but only the final read per address should be considered legitimate 
-
+## Basic parameterized with parameters a, b, operation, result
+B is not always used in case of logical operations (and, or, not)
+Cout is avoided in favor of a wider result output. 
 
 Compile steps:
 make compile

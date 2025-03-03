@@ -36,10 +36,10 @@ module tb_memory #(parameter N = 8); // parameterize the number of bits;
         forever #5 clk = ~clk;  // Clock with a period of 10ns (toggle every 5ns)
     end
 
-    register #(.WIDTH(N)) dut (
+    register #(.WIDTH(N)) test_reg (
         .clk(clk),
-        .rst(0),
-        .enable(1),
+        .rst(1'b0),
+        .enable(1'b1),
         .d(write_copy),
         .q(expected)
     );

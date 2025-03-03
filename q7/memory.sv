@@ -24,8 +24,8 @@ module memory #(parameter N = 8)
     reg [N-1:0] mem [0:2**N-1];
 
     initial begin
-        for (int i = 0; i < 256; i++) begin
-            mem[i] = 8'b00000000;  // Initialize all memory locations to 0
+        for (int i = 0; i < (2**N); i++) begin
+            mem[i] = 0;
         end
     end
 

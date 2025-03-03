@@ -64,6 +64,6 @@ module alu #(parameter N = 8)
         endcase
     end
 
-endmodule
+endmodule: alu
 
 `endif    

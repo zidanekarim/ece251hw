@@ -24,9 +24,9 @@ module tb_memory #(parameter N = 8); // parameterize the number of bits;
     //
     
 
-    logic [N-1:0] write, addr, write_copy; // Inputs
+    logic [N-1:0] write, addr; // Inputs
     logic we, clk; // Inputs
-    wire [N-1:0] result, expected; // Outputs
+    wire [N-1:0] result; // Outputs
 
    //
    // ---------------- INSTANTIATE UNIT UNDER TEST (DUT) ----------------
@@ -36,13 +36,6 @@ module tb_memory #(parameter N = 8); // parameterize the number of bits;
         forever #5 clk = ~clk;  // Clock with a period of 10ns (toggle every 5ns)
     end
 
-    register #(.WIDTH(N)) test_reg (
-        .clk(clk),
-        .rst(1'b0),
-        .enable(1'b1),
-        .d(write_copy),
-        .q(expected)
-    );
 
 
     memory #(N) dut (

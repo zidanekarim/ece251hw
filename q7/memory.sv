@@ -17,14 +17,13 @@
 `include "register.sv"
 
 module memory #(parameter N = 8)
-    (we, clk, addr, write, read);
+    (we, clk, addr, write, read, rst);
     output logic [N-1:0] read;
     input [N-1:0] write;
     input [N-1:0] addr;
-    input logic we, clk;
+    input logic we, clk, rst;
     logic [N-1:0] mem [0:2**N-1];
 
-    logic rst = 0;
 
 
     genvar i;

@@ -25,7 +25,7 @@ module tb_memory #(parameter N = 8); // parameterize the number of bits;
     
 
     logic [N-1:0] write, addr; // Inputs
-    logic we, clk; // Inputs
+    logic we, clk, rst; // Inputs
     wire [N-1:0] result; // Outputs
 
    //
@@ -43,7 +43,8 @@ module tb_memory #(parameter N = 8); // parameterize the number of bits;
         .clk(clk),
         .addr(addr),
         .write(write),
-        .read(result)
+        .read(result),
+        .rst(rst)
     );
    
    
@@ -66,7 +67,7 @@ module tb_memory #(parameter N = 8); // parameterize the number of bits;
     end
 
     initial begin: apply_stimulus
-        
+        rst = 0;
         we = 1;              // Enable write at the start
         addr = 0;
         write = 0;

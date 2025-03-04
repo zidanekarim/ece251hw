@@ -25,7 +25,7 @@ module tb_alu #(parameter N = 8); // parameterize the number of bits;
     logic [N-1:0] a, b; // Inputs
     logic [3:0] operation; // Operation selector
     wire [N-1:0] result; // Output result
-    logic cout; // Carry out (for adder, subtractor, multiplier)
+    logic signed; // signed bit
    //
    // ---------------- INSTANTIATE UNIT UNDER TEST (DUT) ----------------
    //
@@ -34,6 +34,7 @@ module tb_alu #(parameter N = 8); // parameterize the number of bits;
         .b(b), 
         .operation(operation), 
         .result(result) 
+        .signed(signed) // signed bit
     );
    
    
@@ -56,8 +57,9 @@ module tb_alu #(parameter N = 8); // parameterize the number of bits;
     end
 
     initial begin
-        a = 8'b00001111; // Example value
-        b = 8'b00000011; // Example value
+        signed = 1'b0;
+        a = 8'b00001111; 
+        b = 8'b00000011; 
 
         for (int op = 0; op < 9; op++) begin
             operation = op[3:0];

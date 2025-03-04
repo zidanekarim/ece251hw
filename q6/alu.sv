@@ -17,9 +17,9 @@
 
 
 module alu #(parameter N = 8)
-    (a, b, operation, result, signed);
+    (a, b, operation, result, sign);
     input [N-1:0] a, b;
-    input logic signed;
+    input logic sign;
     input [3:0] operation;
     output reg [N-1:0] result;
 
@@ -27,7 +27,7 @@ module alu #(parameter N = 8)
 
     always @(*)
     begin
-        if (signed) begin 
+        if (sign) begin 
             case(operation)
                 4'b0000: result = $signed(a) + $signed(b);
                 4'b0001: result = $signed(a) - $signed(b);

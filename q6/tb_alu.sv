@@ -25,7 +25,7 @@ module tb_alu #(parameter N = 8); // parameterize the number of bits;
     logic [N-1:0] a, b; // Inputs
     logic [3:0] operation; // Operation selector
     wire [N-1:0] result; // Output result
-    logic signed; // signed bit
+    logic sign; // signed bit
    //
    // ---------------- INSTANTIATE UNIT UNDER TEST (DUT) ----------------
    //
@@ -33,8 +33,8 @@ module tb_alu #(parameter N = 8); // parameterize the number of bits;
         .a(a), 
         .b(b), 
         .operation(operation), 
-        .result(result) 
-        .signed(signed) // signed bit
+        .result(result),
+        .sign(sign) // signed bit
     );
    
    
@@ -53,11 +53,11 @@ module tb_alu #(parameter N = 8); // parameterize the number of bits;
     * display variables
     */
     initial begin: display_vars
-        $monitor ($time, " ns | a=%b b=%b operation=%b result=%b", a, b, operation, result);
+        $monitor ($time, " ns | a=%b b=%b operation=%b sign=%b result=%b", a, b, operation, sign, result);
     end
 
     initial begin
-        signed = 1'b0;
+        sign = 1'b0;
         a = 8'b00001111; 
         b = 8'b00000011; 
 
@@ -66,35 +66,15 @@ module tb_alu #(parameter N = 8); // parameterize the number of bits;
             #10; 
         end
 
-        a = 8'b11110000;
-        b = 8'b00001111;
-        operation = 4'b0000; // Add
-        #10;
-        
-        operation = 4'b0001; // Subtract
-        #10;
-        
-        operation = 4'b0010; // Multiply
-        #10;
-        
-        operation = 4'b0011; // Divide
-        #10;
-        
-        operation = 4'b0100; // AND
-        #10;
-        
-        operation = 4'b0101; // OR
-        #10;
-        
-        operation = 4'b0110; // NOT
-        #10;
-        
-        operation = 4'b0111; // Shift Left
-        #10;
-        
-        operation = 4'b1000; // Shift Right
-        #10;
-        
+
+        sign = 1'b1;
+        a = 8'b10001111;
+        b = 4'b0011;
+        for (int op = 0; op < 9; op++) begin
+            operation = op[3:0];
+            #10; 
+        end
+
       
     end
 

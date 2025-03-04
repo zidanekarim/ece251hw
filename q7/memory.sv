@@ -16,7 +16,7 @@
 `define MEMORY
 `include "register.sv"
 
-module memory #(parameter N = 8)
+module memory #(parameter N = 5)
     (we, clk, addr, write, read, rst);
     output logic [N-1:0] read;
     input [N-1:0] write;

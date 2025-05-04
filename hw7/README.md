@@ -16,7 +16,7 @@ In this exercise, we examine in detail how an instruction is executed in a singl
 #2.e  <§4.4> What are the input values for the ALU and the two add units?
 #2.f  <§4.4> What are the values of all inputs for the registers unit?
 
-#3 textbook exercise 4.12)
+#3 textbook exercise (4.12)
 Examine the difficulty of adding a proposed swap rs, rt instruction to MIPS.
 Interpretation: Reg[rt] = Reg[rs]; Reg[rs] = Reg[rt]
 #3.a <§4.4> Which new functional blocks (if any) do we need for this instruction?
@@ -47,6 +47,49 @@ Sign extend is not doing anything
 MemToReg mux is essentially useless (basically all of data memory is not used)'
 
 ## Question 2
- 
+
+Break down 0x00c6ba23 -> 0000 0000 1100 0110 1011 1010  0010 0011
+
+opcode = 0000 00 (R-type instruction)
+rs = 00110
+rt = 00110
+rd = 10111
+shamt = 01000
+funct = 100011 (35 in decimal, 23 in hex) -> Subtract Unsigned
+
+Control Signals
+RegWrite = 1 (since we are writing to a register)
+ALUSrc = 0 (no immediates, read from registers)
+ALU_Operation = 10
+MemWrite = 0 (not writing to memory)
+MemRead = 0 (not reading from memory)
+MemToReg = 0 (not transferring data from memory)
+
+
+New PC Address
+PC + 4, 
+Current PC starts at the instruction for subu -> sent to the adder that the program counter uses which increments 4, and the new output is PC+4
+
+subu $s7, $a2, $a2
+
+ALUSrc 
+Inputs = Reg[$a2] & SignExtendImm (not used so don't care)
+Control Signal = ALUSrc (0)
+Output = Reg[$a2]
+
+MemToReg
+Inputs = ALUResult (Which is Reg[$a2]-Reg[$a2] = 0) and MemoryReadData (Garbage, since not used)
+Control Signal = 0
+Output = 0
+
+
+
+Input values for ALU and add units -> PC address to increment by instruction, and also (Reg[$a2] and !Reg[$a2]+1)
+
+Input to register unit:
+rs = $a2, rt = $a2, Write Register = $s7, Write Data = 0, RegWrite = 1
+
+
+
 
 

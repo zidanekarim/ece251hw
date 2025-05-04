@@ -89,7 +89,18 @@ Input values for ALU and add units -> PC address to increment by instruction, an
 Input to register unit:
 rs = $a2, rt = $a2, Write Register = $s7, Write Data = 0, RegWrite = 1
 
+## Question 3
+
+You would need a new functional block to temporarily store the value of a register
+
+Existing functional blocks that require modification include the register file, which needs to suppoort writing and reading to another register.
 
 
+The Control Unit needs to sequence RegWrite signals in order to prevent data from being lost
 
 
+We would need a new data path to go through a temporary register
+
+We need a signal for when to switch to the second register to write, and a new "SwapEnable" in addition to Write Enable
+
+![alt text](modify.png "modification")

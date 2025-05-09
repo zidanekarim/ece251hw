@@ -64,7 +64,7 @@ or $s2, $s3, $s2
 sw $s2, 0($s3)
 
 4.a <§4.8> If there is no forwarding or hazard detection, insert NOPs to ensure correct execution.
-
+// NOTE from zidane: not really sure how the number of NOPs per instruction works
 add $s3, $s1, $s0
 NOP
 NOP
@@ -78,7 +78,7 @@ NOP
 sw $s2, 0($s3)
 
 
-4.b <§4.8> Now, change and/or rearrange the code to minimize the number of NOPs needed. You can assume register $t0 can be used to hold temporary values in your modified code.
+4.b <§4.8> Now, change and/or rearrange the code to minimize the number of NOPs needed. You can assume register $t0 can be used to hold temporary values in your modified code. // NOTE from zidane: not really sure how the number of NOPs per instruction works
 
 add $s3, $s1, $s0
 lw  $t0, 0($s4)
@@ -150,4 +150,10 @@ ld $s0, 0($s1) --   Address, Alignment, or TLB miss in mem stage.
 
 5.b <§4.10> If the second instruction is fetched immediately after the first instruction, describe what happens in the pipeline when the first instruction causes the first exception you listed in Exercise 4.30.1. Show the pipeline execution diagram from the time the first instruction is fetched until the time the first instruction of the exception handler is completed.
 
+The pipeline stops and the next instruction is flushed
 
+1: IF(beqz)
+2: ID(beqz), IF(ld)
+3: Exception triggered, flush ld
+4: IF(exception handler)
+5: continue handler

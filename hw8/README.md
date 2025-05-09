@@ -44,6 +44,7 @@ addi $s3, $s0, 15
 
 #3 (textbook problem 4.20)
 <§4.6> Add NOP instructions to the code below so that it will run correctly on a pipeline that does not handle data hazards.
+```
 addi $s0, $s1, 5
 NOP 
 NOP
@@ -54,7 +55,7 @@ addi $s3, $s0, 15
 NOP
 NOP
 add $s4, $s2, $s1
-
+```
 #4 (textbook problem 4.27)
 <§4.8> Problems in this exercise refer to the following sequence of instructions, and assume that it is executed on a five-stage pipelined datapath:
 add $s3, $s1, $s0
@@ -65,6 +66,7 @@ sw $s2, 0($s3)
 
 4.a <§4.8> If there is no forwarding or hazard detection, insert NOPs to ensure correct execution.
 // NOTE from zidane: not really sure how the number of NOPs per instruction works
+```
 add $s3, $s1, $s0
 NOP
 NOP
@@ -76,17 +78,17 @@ or $s2, $s3, $s2
 NOP
 NOP
 sw $s2, 0($s3)
-
+```
 
 4.b <§4.8> Now, change and/or rearrange the code to minimize the number of NOPs needed. You can assume register $t0 can be used to hold temporary values in your modified code. // NOTE from zidane: not really sure how the number of NOPs per instruction works
-
+```
 add $s3, $s1, $s0
 lw  $t0, 0($s4)
 lw  $s2, 4($s3)
 add $s1, $zero, $t0
 or  $s2, $s3, $s2
 sw  $s2, 0($s3)
-
+```
 4.c <§4> If the processor has forwarding, but we forgot to implement the hazard detection unit, what happens when the original code executes?
 No stalls so garbage values
 

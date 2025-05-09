@@ -67,8 +67,18 @@ The results of the SPEC CPU2006 bzip2 benchmark running on an AMD Barcelona has 
 
 3.a <§§1.6, 1.9> Find the CPI if the clock cycle time is 0.333 ns.
 
+0.333 * 10^-9 S, clock rate = 1/0.333 * 10^-9, about 3 GHz
+750s = 2.389E12 * CPI / 3*10^9, CPI = 0.94181665969 or 0.94
+
 3.b <§§1.6, 1.9> Find the increase in CPU time if the number of instructions of the benchmark is increased by 10% without affecting the CPI.
+825 seconds (solve for time while holding CPI at 0.94 and multiply instructions by 1.1)
 
 3.c <§§1.6, 1.9> Find the increase in CPU time if the number of instructions of the benchmark is increased by 10% and the CPI is increased by 5%.
+825 seconds * 1.05 = 866.25s
+
 
 3.d <§1.6> Suppose that we are developing a new version of the AMD Barcelona processor with a 4 GHz clock rate. We have added some additional instructions to the instruction set in such a way that the number of instructions has been reduced by 15%. The execution time is reduced to 700 s and the new SPECratio is 13.7. Find the new CPI.
+
+Execution Time = Instructions * CPI / Clock Rate 
+700s * (4*10^9) /(0.85 * I ) = CPI
+CPI = 1.38
